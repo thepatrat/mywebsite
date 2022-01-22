@@ -74,6 +74,19 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~ MOVE CAMERA ~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.rotation.y = t * -0.0002;
+}
+
+document.body.onscroll = moveCamera;
+moveCamera();
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~ Main Loop ~~~~~~~~
@@ -84,7 +97,7 @@ function animate() {
 	icos.rotation.x += 0.01;
 	icos.rotation.y += 0.01;
 
-  controls.update();
+ // controls.update();
 
 	renderer.render( scene, camera );
 };
