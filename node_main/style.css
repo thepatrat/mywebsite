@@ -38,8 +38,6 @@ canvas {
   left: 0;
 }
 
-
-
   header {
     background: var(--dark-bg);
     grid-column: 2 / span 5;
@@ -49,7 +47,7 @@ canvas {
   }
 
   section {
-    grid-column: 2 / 8;
+    grid-column: 2 / span 8;
     padding: 1rem;
     background: var(--dark-bg);
     font-size: 1.25rem;

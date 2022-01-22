@@ -37,11 +37,11 @@ document.body.appendChild( renderer.domElement );
 //const lightHelper = new THREE.PointLightHelper(pointLight);
 //scene.add(lightHelper);
 
-const gridHelper = new THREE.GridHelper(300,50);
-scene.add(gridHelper);
+//const gridHelper = new THREE.GridHelper(300,50);
+//scene.add(gridHelper);
 
-const cameraHelper = new THREE.CameraHelper( camera );
-scene.add(cameraHelper);
+//const cameraHelper = new THREE.CameraHelper( camera );
+//scene.add(cameraHelper);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
