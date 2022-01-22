@@ -12,7 +12,7 @@ const scene = new THREE.Scene();
 
 // ~~~~~~~~~ SETUP CAMERA ~~~~~~~~~~~
 const camera = new THREE.PerspectiveCamera(100 , window.innerWidth / window.innerHeight, 0.1, 1000 );
-camera.position.set(0,0,0);
+camera.position.set(0,0,10);
 
 // ~~~~~~~~~ SETUP LIGHTSOURCES ~~~~~~~~~
 const pointLight = new THREE.PointLight(0xffffff);
