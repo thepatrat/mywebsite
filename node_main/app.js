@@ -12,7 +12,7 @@ const scene = new THREE.Scene();
 
 // ~~~~~~~~~ SETUP CAMERA ~~~~~~~~~~~
 const camera = new THREE.PerspectiveCamera(100 , window.innerWidth / window.innerHeight, 0.1, 1000 );
-camera.position.set(0,0,5);
+camera.position.set(0,0,0);
 
 // ~~~~~~~~~ SETUP LIGHTSOURCES ~~~~~~~~~
 const pointLight = new THREE.PointLight(0xffffff);
@@ -40,20 +40,40 @@ document.body.appendChild( renderer.domElement );
 const gridHelper = new THREE.GridHelper(300,50);
 scene.add(gridHelper);
 
+const cameraHelper = new THREE.CameraHelper( camera );
+scene.add(cameraHelper);
+
 const controls = new OrbitControls(camera, renderer.domElement);
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~ ADD OBJECTS ~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Add icosherdron
 const geometry = new THREE.IcosahedronGeometry();
 const material = new THREE.MeshBasicMaterial( { color: 0x2F4858, wireframe: true});
-const cube = new THREE.Mesh( geometry, material );
+const icos = new THREE.Mesh( geometry, material );
 
-cube.position.y = 3.5;
-cube.position.x = 1;
+icos.position.set(0,0,0);
+scene.add( icos );
 
-scene.add( cube );
+// Add multiple objects in a function
+function addStar() {
+  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const star = new THREE.Mesh(geometry, material);
+
+  const [x, y, z] = Array(3)
+    .fill()
+    .map(() => THREE.MathUtils.randFloatSpread(100));
+
+  star.position.set(x, y, z);
+  scene.add(star);
+}
+
+Array(200).fill().forEach(addStar);
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~ Main Loop ~~~~~~~~
@@ -61,8 +81,8 @@ scene.add( cube );
 function animate() {
 	requestAnimationFrame( animate );
 
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
+	icos.rotation.x += 0.01;
+	icos.rotation.y += 0.01;
 
   controls.update();
 
